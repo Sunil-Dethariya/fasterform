@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+    /* Toggle Button */
+.theme-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #444;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.theme-btn:hover {
+    opacity: 0.9;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background: linear-gradient(135deg, #1a1a1a, #333);
+    color: #fff;
+}
+
+body.dark-mode .container {
+    background: #2c2c2c;
+    color: #fff;
+    border:1px solid white;
+}
+
+body.dark-mode table {
+    background: #444;
+    color: #fff;
+}
+
+body.dark-mode th {
+    background: #222;
+}
+
+body.dark-mode td {
+    border-color: #666;
+}
+
+body.dark-mode .btn-success {
+    background: #28a745;
+}
+
+body.dark-mode .btn-danger {
+    background: #dc3545;
+}
+
+body.dark-mode h2{
+color:white;
+}
+</style>
+</head>
+<body>
+<div id="toast"></div>
+
+    <div class="container">
+        <button id="theme-toggle" class="theme-btn">🌙 Dark Mode</button>
+
+        <h2>Enter Your Details</h2>
+        <form action="/submit" method="POST">
+            <input type="text" name="first_name" placeholder="First Name" required><br>
+            <input type="text" name="last_name" placeholder="Last Name" required><br>
+            <input type="email" name="email" placeholder="Email" required><br>
+            <input type="number" name="zip_code" placeholder="Zip Code" required><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+<script>
+    const toggleBtn = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    toggleBtn.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+
+        if (body.classList.contains("dark-mode")) {
+            toggleBtn.textContent = "☀️ Light Mode";
+        } else {
+            toggleBtn.textContent = "🌙 Dark Mode";
+        }
+    });
+
+</script>
+
+</body>
+</html>
